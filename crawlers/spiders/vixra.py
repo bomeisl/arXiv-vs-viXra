@@ -32,7 +32,7 @@ class VixraSpider(scrapy.Spider):
 
     def start_requests(self):
         for category in self.categories:
-            url = '{self.baseurl}/{category}'
+            self.url = '{self.baseurl}/{category}'
             callback = ft.partial(self.parse_index, category=category)
             yield scrapy.Request(url=self.url, callback=callback)
 
