@@ -3,8 +3,20 @@ import functools as ft
 from colorama import Fore, init
 
 import scrapy
+import os
+from collections import namedtuple
 
-from .utils import ArticleData, dump_article
+import simplejson
+
+ArticleData = namedtuple('ArticleData', ['id', 'title', 'abstract', 'category'])
+
+
+def dump_article(data, datadir):
+    assert isinstance(data, ArticleData)
+    filename = data.id.replace(':', '_') + '.json'
+    path = os.path.join(datadir, filename)
+    with open(path, 'w') as buf:
+        simplejson.dump(dict(data._asdict()), buf)
 
 init()
 
