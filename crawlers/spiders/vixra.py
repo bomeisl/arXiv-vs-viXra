@@ -19,17 +19,17 @@ class VixraSpider(scrapy.Spider):
 
     def start_requests(self):
         for category in self.categories:
-            url = f'{self.baseurl}/{category}'
+            url = '{self.baseurl}/{category}'
             callback = ft.partial(self.parse_index, category=category)
             yield scrapy.Request(url=url, callback=callback)
 
     def parse_index(self, response, category):
         prev_months = response.xpath('(//div[@id="flow"]/p)[1]/a/@href').extract()
         nr_hits = len(prev_months)
-        self.logger.debug(f'Found {nr_hits} indices in {response.url}')
+        self.logger.debug('Found {nr_hits} indices in {response.url}')
 
         for month in prev_months:
-            url = f'{response.url}/{month}'
+            url = '{response.url}/{month}'
             callback = ft.partial(self.parse_articles, category=category)
             yield scrapy.Request(url=url, callback=callback)
 
@@ -37,10 +37,10 @@ class VixraSpider(scrapy.Spider):
         ids = response.xpath('//div[@id="flow"]/p/b/a[1]/text()').extract()
         articles = response.xpath('//div[@id="flow"]/div[@id="abstract"]')
         nr_articles = len(articles)
-        self.logger.debug(f'Found {nr_articles} articles in {response.url}')
+        self.logger.debug('Found {nr_articles} articles in {response.url}')
 
         if len(ids) != len(articles):
-            self.logger.error(Fore.RED + f'Could not match ids and articles'
+            self.logger.error(Fore.RED + 'Could not match ids and articles'
                               + Fore.RESET_ALL)
             return
 
