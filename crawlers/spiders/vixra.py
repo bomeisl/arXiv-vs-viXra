@@ -32,9 +32,9 @@ class VixraSpider(scrapy.Spider):
 
     def start_requests(self):
         for category in self.categories:
-            self.url = '{self.baseurl}/{category}'
+            urls = '{self.baseurl}/{category}'
             callback = ft.partial(self.parse_index, category=category)
-            yield scrapy.Request(url=self.url, callback=callback)
+            yield scrapy.Request(url=urls, callback=callback)
 
     def parse_index(self, response, category):
         prev_months = response.xpath('(//div[@id="flow"]/p)[1]/a/@href').extract()
