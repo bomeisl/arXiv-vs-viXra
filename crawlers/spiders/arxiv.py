@@ -30,7 +30,7 @@ def crawl(category, entries, datadir):
             logger.debug(Fore.RED + 'Categories do not match for ' + article_id + Fore.RESET)
 
 
-        data = ArticleData(id=f'arXiv:{article_id}', title=article['title'],
+        data = ArticleData(id='arXiv:{article_id}', title=article['title'],
                            abstract=article['summary'], category=primary_category)
         dump_article(data, datadir)
 
