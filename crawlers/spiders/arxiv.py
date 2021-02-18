@@ -18,7 +18,7 @@ query_url = 'http://export.arxiv.org/api/query?search_query=cat:{category}&sortB
               type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True))
 def crawl(category, entries, datadir):
     print()
-    print(f'Crawling {category}')
+    print('Crawling {category}')
     query = query_url.format(category=category, entries=entries)
     feed = feedparser.parse(query)
 
