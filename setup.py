@@ -6,7 +6,7 @@ setuptools.setup(
     author="KB",
     author_email="kaybomeisl2@gmail.com",
     description="Vixra-scraper-fork",
-    long_description=long_description,
+    long_description="see repo",
     long_description_content_type="text/markdown",
     url="https://github.com/dsuess/arXiv-vs-viXra.git",
     packages=setuptools.find_packages(),
